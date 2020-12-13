@@ -17,3 +17,16 @@ public class Fraction {
      **/
     public Fraction() {
         numerator = 0;
+        denominator = 1;
+    }
+
+  
+    /**
+     * Constructs a new Fraction using the specified numerator and denominator values.
+     * @param numerator the numerator value of the fraction.
+     * @param denominator the denominator value of the fraction.
+     */
+    public Fraction(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
