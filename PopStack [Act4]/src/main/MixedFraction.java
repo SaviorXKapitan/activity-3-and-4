@@ -222,5 +222,19 @@ public class MixedFraction extends Fraction{
         return prodMixed;
     }
 
+    /**
+     * Returns the quotient of this mixed fraction and a fraction.
+     * @param other the fraction to divide by (divisor).
+     * @return the quotient of this mixed fraction and the fraction.
+     */
+    public MixedFraction divideBy(Fraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction quo = operand1.toFraction().divideBy(other);
+        quo.reduce();
+        MixedFraction quoMixed = new MixedFraction(quo);
+        return quoMixed;
+    }
+}
+
 
 
