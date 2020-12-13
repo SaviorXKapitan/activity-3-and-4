@@ -95,5 +95,50 @@ public class Fraction {
         setNumerator(newNumerator);
         setDenominator(newDenominator);
     }
+    /**
+     * Returns the sum of this fraction and another fraction.
+     * @param other the other fraction to add with (addend).
+     * @return the sum of this fraction and the other fraction.
+     */
+    public Fraction add(Fraction other) {
+        Fraction sum = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = den / denominator * numerator + den / other.getDenominator() * other.getNumerator();
+        sum.setNumerator(num);
+        sum.setDenominator(den);
+        sum.reduce();
+        return sum;
+    }
+
+    /**
+     * Returns the difference of this fraction and another fraction.
+     * @param other the other fraction to subtract by (minuend).
+     * @return the difference of this fraction and the other fraction.
+     */
+    public Fraction subtract(Fraction other) {
+        Fraction diff = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = den / denominator * numerator - den / other.getDenominator() * other.getNumerator();
+        diff.setNumerator(num);
+        diff.setDenominator(den);
+        diff.reduce();
+        return diff;
+    }
+
+    /**
+     * Returns the product of this fraction and another fraction.
+     * @param other the other fraction to multiply with (multiplier).
+     * @return the product of this fraction and the other fraction.
+     */
+    public Fraction multiplyBy(Fraction other) {
+        Fraction prod = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = numerator * other.getNumerator();
+        prod.setNumerator(num);
+        prod.setDenominator(den);
+        prod.reduce();
+        return prod;
+    }
+
 
     
