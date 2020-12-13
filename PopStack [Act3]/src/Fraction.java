@@ -65,3 +65,35 @@ public class Fraction {
     public void setDenominator(int denominator) {
         this.denominator = denominator;
     }
+     /**
+     * Returns the string form of this fraction following the format numerator/denominator.
+     * @return the string format of this fraction.
+     **/
+    public String toString() {
+        if (numerator > denominator){
+            MixedFraction mixedFraction = new MixedFraction(this);
+            return (numerator + "/" + denominator + " or " +  mixedFraction);
+        }
+        return (numerator + "/" + denominator);
+    }
+
+    /**
+     * Returns the equivalent decimal value of this fraction in double format.
+     * @return the decimal format of this fraction.
+     */
+    public double toDouble() {
+        return (double) numerator / denominator;
+    }
+
+    /**
+     * Reduces this fraction to its simplest form.
+     */
+    public void reduce() {
+        int gcd = computeGCD(numerator, denominator);
+        int newNumerator = numerator / gcd;
+        int newDenominator = denominator / gcd;
+        setNumerator(newNumerator);
+        setDenominator(newDenominator);
+    }
+
+    
