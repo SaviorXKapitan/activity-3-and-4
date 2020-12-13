@@ -270,5 +270,56 @@ public class FractionTester {
                 break;
         }
     }
+    
+     public static void reduce(){
+        Scanner key = new Scanner(System.in);
+        System.out.println("Which fraction would you like to reduce?\nPress 1 for Fraction 1, 2 for Fraction 2");
+        int choice = key.nextInt();
+        switch (choice){
+            case 1:
+                operand1.reduce();
+                System.out.print("Reduced Fraction 1: " + operand1);
+                break;
+            case 2:
+                operand2.reduce();
+                System.out.print("Reduced Fraction 2: " + operand2);
+                break;
+            default:
+                System.out.print("Please make sure your input is valid.");
+        }
+    }
+
+    public static void pressEnter(){
+        Scanner key = new Scanner(System.in);
+        System.out.print("\n\nPress enter to go back to main menu...");
+        key.nextLine();
+    }
+}
+
+ public static void reduce(){
+        Scanner key = new Scanner(System.in);
+        System.out.println("Which fraction would you like to reduce?\nPress 1 for Fraction 1, 2 for Fraction 2");
+        int choice = key.nextInt();
+        switch (choice){
+            case 1:
+                operand1.reduce();
+                System.out.print("Reduced Fraction 1: " + operand1);
+                break;
+            case 2:
+                operand2.reduce();
+                System.out.print("Reduced Fraction 2: " + operand2);
+                break;
+            default:
+                System.out.print("Please make sure your input is valid.");
+        }
+    }
+
+    public static void pressEnter(){
+        Scanner key = new Scanner(System.in);
+        System.out.print("\n\nPress enter to go back to main menu...");
+        key.nextLine();
+    }
+}
+
 
 
