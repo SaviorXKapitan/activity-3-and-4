@@ -223,3 +223,47 @@ public class FractionTester {
                 break;
         }
     }
+private static void printRegAndMixResults(String operation){
+        MixedFraction operand2Mix = (MixedFraction) operand2;
+        switch (operation){
+            case "add":
+                System.out.print("Sum (fraction): " + operand1.add(operand2Mix).toString() +"\nSum (decimal): ");
+                System.out.printf("%.2f",(operand1.add(operand2Mix)).toDouble());
+                break;
+            case "subtract":
+                System.out.print("Difference (fraction):  " + operand1.subtract(operand2Mix).toString() +"\nDifference (decimal): ");
+                System.out.printf("%.2f",(operand1.subtract(operand2Mix)).toDouble());
+                break;
+            case "multiply":
+                System.out.print("Product (fraction): " + operand1.multiplyBy(operand2Mix).toString() +"\nProduct (decimal): ");
+                System.out.printf("%.2f", (operand1.multiplyBy(operand2Mix)).toDouble());
+                break;
+            case "divide":
+                System.out.print("Quotient (fraction): " + operand1.divideBy(operand2Mix).toString() +"\nQuotient (decimal): ");
+                System.out.printf("%.2f",(operand1.divideBy(operand2Mix)).toDouble());
+                break;
+        }
+
+    }
+
+    private static void printMixandRegResults(String operation){
+        MixedFraction operand1Mix = (MixedFraction) operand1;
+        switch (operation){
+            case "add":
+                System.out.print("Sum (fraction): " + operand1Mix.add(operand2) +"\nSum (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.add(operand2)).toDouble());
+                break;
+            case "subtract":
+                System.out.print("Difference (fraction): " + operand1Mix.subtract(operand2) +"\nDifference (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.subtract(operand2)).toDouble());
+                break;
+            case "multiply":
+                System.out.print("Product (fraction): " + operand1Mix.multiplyBy(operand2) +"\nProduct (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.multiplyBy(operand2)).toDouble());
+                break;
+            case "divide":
+                System.out.print("Quotient (fraction): " + operand1Mix.divideBy(operand2) +"\nQuotient (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.divideBy(operand2)).toDouble());
+                break;
+        }
+    }
