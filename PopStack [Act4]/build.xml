@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Module 4" basedir="." default="test" >
+<property name="clover.jar" location="lib/CLOVER_HOME/lib/clover.jar"/>
+<taskdef resource="cloverlib.xml" classpath="${clover.jar}"/>
+	
+</project>
