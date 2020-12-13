@@ -200,5 +200,33 @@ public class Fraction {
         return prodMixed;
     }
 
+ /**
+     * Returns the quotient of this fraction and a mixed fraction.
+     * @param other the mixed fraction to divide by (divisor).
+     * @return the quotient of this fraction and the mixed fraction.
+     */
+    public MixedFraction divideBy(MixedFraction other) {
+        Fraction operand1 = new Fraction(getNumerator(), getDenominator());
+        Fraction quo = operand1.divideBy(other.toFraction());
+        quo.reduce();
+        MixedFraction quoMixed = new MixedFraction(quo);
+        return quoMixed;
+    }
+
+    /**
+     * Returns the greatest common divisor of this fraction's numerator and denominator.
+     * @param numerator the numerator part of this fraction.
+     * @param denominator the denominator part of this fraction.
+     * @return the value of the greatest common denominator.
+     */
+    private int computeGCD(int numerator, int denominator) {
+        if(numerator % denominator == 0)
+            return denominator;
+        else {
+            return computeGCD(denominator, numerator % denominator);
+        }
+    }
+
+}
 
 
