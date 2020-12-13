@@ -38,3 +38,37 @@ public class Fraction {
         this.numerator = numerator;
         this.denominator = denominator;
     }
+    
+    /**
+     * Returns this fraction's numerator.
+     * @return the value of this fraction's numerator.
+     */
+    public int getNumerator() {
+        return numerator;
+    }
+
+    /**
+     * Returns this fraction's denominator.
+     * @return the value of this fraction's denominator.
+     */
+    public int getDenominator() {
+        return denominator;
+    }
+
+
+    /**
+     * Sets an entered numerator to this fraction's numerator.
+     * @param numerator the new numerator value.
+     */
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    /**
+     * Sets an entered denominator to this fraction's denominator.
+     * @param denominator the new denominator value.
+     */
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
+    }
+
