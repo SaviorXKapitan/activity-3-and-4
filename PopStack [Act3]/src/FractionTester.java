@@ -92,3 +92,46 @@ public class FractionTester {
             pressEnter();
         }
     }
+    
+    public static void combination(String operation){
+        if(!(operand1 instanceof MixedFraction) && !(operand2 instanceof MixedFraction)) printRegAndRegResults(operation);
+        if((operand1 instanceof MixedFraction) && (operand2 instanceof MixedFraction)) printMixandMixResults(operation);
+        if(!(operand1 instanceof MixedFraction) && (operand2 instanceof MixedFraction)) printRegAndMixResults(operation);
+        if((operand1 instanceof MixedFraction) && !(operand2 instanceof MixedFraction)) printMixandRegResults(operation);
+    }
+
+    private static String decideMixedOrRegular(String operand) {
+        System.out.println("Do you want " + operand + " to be a mixed fraction or a proper/improper fraction?" + "\n" +
+                "\t1. Mixed fraction" + "\n" +
+                "\t2. Proper/Improper fraction");
+        String type = null;
+        boolean loop;
+        do {
+            try {
+                int input;
+                loop = false;
+                Scanner keyboard = new Scanner(System.in);
+                System.out.print("Enter 1 or 2: ");
+                input = keyboard.nextInt();
+                if (input < 1 || input > 2 ){
+                    System.out.println("Please input 1 or 2");
+                    loop = true;
+                }
+                else {
+                    switch (input) {
+                        case 1:
+                            type = "mixed";
+                            break;
+                        case 2:
+                            type = "regular";
+                            break;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Please input a number" + "\n");
+                loop = true;
+            }
+        } while(loop);
+        return type;
+    }
+
