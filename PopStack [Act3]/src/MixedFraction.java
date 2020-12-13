@@ -195,6 +195,31 @@ public class MixedFraction extends Fraction{
         MixedFraction sumMixed = new MixedFraction(sum);
         return sumMixed;
     }
+    /**
+     * Returns the difference of this mixed fraction and a fraction.
+     * @param other the fraction to subtract by (minuend).
+     * @return the difference of this mixed fraction and the the fraction.
+     */
+    public MixedFraction subtract(Fraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction diff = operand1.toFraction().subtract(other);
+        diff.reduce();
+        MixedFraction diffMixed = new MixedFraction(diff);
+        return diffMixed;
+    }
+
+    /**
+     * Returns the product of this mixed fraction and a fraction.
+     * @param other the fraction to multiply with (multiplier).
+     * @return the product of this mixed fraction and the the fraction.
+     */
+    public MixedFraction multiplyBy(Fraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction prod = operand1.toFraction().multiplyBy(other);
+        prod.reduce();
+        MixedFraction prodMixed = new MixedFraction(prod);
+        return prodMixed;
+    }
 
 
 
