@@ -71,4 +71,80 @@ public class Fraction {
     public void setDenominator(int denominator) {
         this.denominator = denominator;
     }
+    /**
+     * Returns the string form of this fraction following the format numerator/denominator.
+     * @return the string format of this fraction.
+     **/
+    public String toString() {
+        if (numerator > denominator){
+            MixedFraction mixedFraction = new MixedFraction(this);
+            return (numerator + "/" + denominator + " or " +  mixedFraction);
+        }
+        return (numerator + "/" + denominator);
+    }
+
+    /**
+     * Returns the equivalent decimal value of this fraction in double format.
+     * @return the decimal format of this fraction.
+     */
+    public double toDouble() {
+        return (double) numerator / denominator;
+    }
+
+    /**
+     * Reduces this fraction to its simplest form.
+     */
+    public void reduce() {
+        int gcd = computeGCD(numerator, denominator);
+        int newNumerator = numerator / gcd;
+        int newDenominator = denominator / gcd;
+        setNumerator(newNumerator);
+        setDenominator(newDenominator);
+    }
+
+ /**
+     * Returns the sum of this fraction and another fraction.
+     * @param other the other fraction to add with (addend).
+     * @return the sum of this fraction and the other fraction.
+     */
+    public Fraction add(Fraction other) {
+        Fraction sum = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = den / denominator * numerator + den / other.getDenominator() * other.getNumerator();
+        sum.setNumerator(num);
+        sum.setDenominator(den);
+        sum.reduce();
+        return sum;
+    }
+
+    /**
+     * Returns the difference of this fraction and another fraction.
+     * @param other the other fraction to subtract by (minuend).
+     * @return the difference of this fraction and the other fraction.
+     */
+    public Fraction subtract(Fraction other) {
+        Fraction diff = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = den / denominator * numerator - den / other.getDenominator() * other.getNumerator();
+        diff.setNumerator(num);
+        diff.setDenominator(den);
+        diff.reduce();
+        return diff;
+    }
+
+    /**
+     * Returns the product of this fraction and another fraction.
+     * @param other the other fraction to multiply with (multiplier).
+     * @return the product of this fraction and the other fraction.
+     */
+    public Fraction multiplyBy(Fraction other) {
+        Fraction prod = new Fraction();
+        int den = denominator * other.getDenominator();
+        int num = numerator * other.getNumerator();
+        prod.setNumerator(num);
+        prod.setDenominator(den);
+        prod.reduce();
+        return prod;
+    }
+
 
