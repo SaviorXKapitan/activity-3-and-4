@@ -81,3 +81,49 @@ public class MixedFraction extends Fraction{
     public int getWhole(){
         return this.whole;
     }
+
+    
+    /**
+     * Returns the value of this mixed fraction's fraction part.
+     * @return the value of the fraction part of this mixed fraction.
+     */
+    public Fraction getFractionPart(){
+        int numerator = getNumerator();
+        int denominator = getDenominator();
+        Fraction fractionPart = new Fraction(numerator, denominator);
+        return fractionPart;
+    }
+
+    /**
+     * Returns this mixed fraction's equivalent improper fraction
+     * @return the converted improper fraction of this fraction
+     */
+    public Fraction toFraction() {
+        int tempNumerator = getNumerator();
+        int denominator = getDenominator();
+        int numerator = (Math.abs(whole) * denominator) + tempNumerator;
+        if (whole < 0 )  numerator = 0-numerator;
+        Fraction fraction = new Fraction(numerator, denominator);
+        return fraction;
+    }
+
+    /**
+     * Returns the string form of this mixed fraction following the format wholeNumber numerator/denominator.
+     * @return the String format of this mixed fraction
+     */
+    public String toString() {
+        if (whole == 0) {
+            if (getDenominator() == 1) {
+                int tempFraction = whole + getNumerator();
+                return (Integer.toString(tempFraction));
+            } else {
+                return (getNumerator() + "/" + getDenominator());
+            }
+        } else if (getDenominator() == 1){
+            int tempFraction = whole + getNumerator();
+            return (Integer.toString(tempFraction));
+        } else {
+            return (this.whole + " " + super.toString());
+        }
+    }
+
