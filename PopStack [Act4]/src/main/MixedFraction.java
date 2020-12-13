@@ -126,4 +126,75 @@ public class MixedFraction extends Fraction{
             return (this.whole + " " + super.toString());
         }
     }
+    
+     /**
+     * Returns the equivalent decimal value of this mixed fraction in double format.
+     * @return the decimal format of this mixed fraction.
+     */
+    public double toDouble() {
+        return toFraction().toDouble();
+    }
+
+    /**
+     * Returns the sum of this mixed fraction and another mixed fraction.
+     * @param other the mixed fraction to add with (addend).
+     * @return the sum of this mixed fraction and the other mixed fraction.
+     */
+    public MixedFraction add(MixedFraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction sum = operand1.toFraction().add(other.toFraction());
+        MixedFraction sumMixed = new MixedFraction(sum);
+        return sumMixed;
+    }
+
+    /**
+     * Returns the difference of this mixed fraction and another mixed fraction.
+     * @param other the other mixed fraction to subtract by (minuend).
+     * @return the difference of this mixed fraction and the other mixed fraction.
+     */
+    public MixedFraction subtract(MixedFraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction diff = operand1.toFraction().subtract(other.toFraction());
+        MixedFraction diffMixed = new MixedFraction(diff);
+        return diffMixed;
+    }
+
+    /**
+     * Returns the product of this mixed fraction and another mixed fraction.
+     * @param other the other mixed fraction to multiply with (multiplier).
+     * @return the product of this mixed fraction and the other mixed fraction.
+     */
+    public MixedFraction multiplyBy(MixedFraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction prod = operand1.toFraction().multiplyBy(other.toFraction());
+        MixedFraction prodMixed = new MixedFraction(prod);
+        return prodMixed;
+    }
+
+/**
+     * Returns the quotient of this mixed fraction and another mixed fraction.
+     * @param other the other mixed fraction to divide by (divisor).
+     * @return the quotient of this mixed fraction and the other mixed fraction.
+     */
+    public MixedFraction divideBy(MixedFraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction quo = operand1.toFraction().divideBy(other.toFraction());
+        MixedFraction quoMixed = new MixedFraction(quo);
+        return quoMixed;
+    }
+
+
+    /**
+     * Returns the sum of this mixed fraction and a fraction.
+     * @param other the fraction to add with (addend).
+     * @return the sum of this mixed fraction and the the fraction.
+     */
+    public MixedFraction add(Fraction other) {
+        MixedFraction operand1 = new MixedFraction(whole, getNumerator(), getDenominator());
+        Fraction sum = operand1.toFraction().add(other);
+        sum.reduce();
+        MixedFraction sumMixed = new MixedFraction(sum);
+        return sumMixed;
+    }
+
 
