@@ -2,5 +2,109 @@
 <project name="Module 4" basedir="." default="test" >
 <property name="clover.jar" location="lib/CLOVER_HOME/lib/clover.jar"/>
 <taskdef resource="cloverlib.xml" classpath="${clover.jar}"/>
+	<!-- Global properties for this build file -->
+	<property name = "build.classes" location = "build/classes"/>
+	<property name="build.testclasses" location="build/testclasses"/>
+	<property name = "jar" location = "jar"/>
+	<property name = "doc" location = "doc"/>
+	<property name = "lib" location = "lib"/>
+	<property name = "junit-reports" location ="junit-reports"/>
+	<property name = "coverage" value="coverage-reports"/>
+	<property name="junit.jar" location="lib/junit-4.13.1.jar"/>
+    <property name="hamcrest.jar" location="lib/hamcrest-core-1.3.jar"/>
 	
+	<property name="clover.jar" location="CLOVER_HOME/lib/clover.jar"/>
+	
+	<taskdef resource="cloverlib.xml" classpath="${clover.jar}"/>
+	
+	<path id="build.classpath">
+		<pathelement path ="${clover.jar}"/>
+        <pathelement location="${build.classes}"/>
+    </path>
+	
+	<path id="testbuild.classpath">
+		<path refid = "build.classpath" />
+		<pathelement location="${junit.jar}"/>
+        <pathelement location="${hamcrest.jar}"/>
+		<pathelement location="${build.testclasses}"/>
+	</path>
+	
+	<target name="with.clover">
+    <clover-setup/>
+	</target>
+	
+	<!-- Creates directories for classes and jar files-->
+	<target name="init" depends="clean" >
+		<mkdir dir="${jar}"/>
+		<mkdir dir="${junit-reports}"/>
+		<mkdir dir="${coverage}"/>
+		<mkdir dir="${build.classes}"/>
+		<mkdir dir="${build.testclasses}"/>
+	</target>
+
+	<!-- Asks for the src directory the converts java files to classes -->
+	<target name="compile" depends="init,with.clover">
+		<input message="Please enter the directory of the Java src" addproperty="src"/>
+		<javac includeantruntime="false" srcdir="${src}/main" destdir="${build.classes}" classpathref="build.classpath"/> 
+		<javac includeantruntime="false" srcdir="${src}/test" destdir="${build.testclasses}" classpathref="testbuild.classpath"/>
+		
+	</target>
+	
+	<!--
+		Needs to compile and instrument before it can be tested.
+	-->
+	 <target name="test" depends="compile">
+        <junit fork="yes" printsummary="true" showoutput="true">
+            <classpath refid="testbuild.classpath"/>
+            <formatter type="xml"/>
+			<formatter type="plain"/>
+            <batchtest fork="yes" todir="${junit-reports}">
+                <fileset dir="${build.testclasses}" includes="**/*Test.*"/>
+            </batchtest>
+        </junit>
+		<!--
+			Generates a junit report 
+		-->
+		<junitreport todir="${junit-reports}">
+			<fileset dir="${junit-reports}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${junit-reports}" />
+		</junitreport>
+		
+		<!-- 
+			Generates coverage report
+		-->
+		<clover-html-report outdir="${coverage}" title="Test Coverage"/>
+	</target>
+	
+	
+	<!-- jar must run compile and doc first before it can archive it -->
+	<target name="jar" depends="compile, doc">
+		<jar destfile="${jar}\MyApp.jar" basedir="src/test"/>
+		<jar destfile="${jar}\Docs.jar" basedir="${doc}"/>
+	</target>
+	
+	<!-- Generates documentation for the given src path-->
+	<target name="doc" depends="compile">
+	<!-- Automatically generates a new directory after javadoc execution -->
+		<javadoc sourcepath="${src}/main" destdir="${doc}">
+			<fileset dir="."/>
+			<classpath refid = "classpath" />
+		</javadoc>
+	</target>
+	
+	<!-- Deletes everything in the folder except the src folder, lib folder, and the build file -->
+	<target name="clean">
+		<clover-clean/> 
+		<delete includeemptydirs="true">
+			<fileset dir=".">
+				<include name="*/"/>
+				<exclude name="src/"/>
+				<exclude name="lib/"/>
+				<exclude name="build.xml"/>
+				<exclude name="README.txt"/>
+			</fileset>
+		</delete>
+	</target>
 </project>
