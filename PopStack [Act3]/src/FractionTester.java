@@ -134,4 +134,97 @@ public class FractionTester {
         } while(loop);
         return type;
     }
+    
+     private static Fraction enterFraction(String operand, String type) {
+        Fraction fraction = null;
+        int numerator , denominator, whole=0;
+        try {
+            if (type.equals("mixed")) whole = enterFractionData("whole",operand);
+            numerator = enterFractionData("numerator", operand);
+            denominator = enterFractionData("denominator", operand);
+
+            if (type.equals("mixed")) fraction= new MixedFraction(whole,numerator, denominator);
+            else fraction= new Fraction(numerator,denominator);
+        }catch (NoNumeratorException noNumerator) {
+            System.out.println("Please enter a valid numerator." + "\n");
+            enterFraction(operand, type);
+        }
+        catch (NoDenominatorException noDenominator) {
+            System.out.println("Please enter a valid denominator." + "\n");
+            enterFraction(operand, type);
+        }
+        catch (NoWholeNumberException noWholeNumber){
+            System.out.println("Please enter a valid whole number." + "\n");
+            enterFraction(operand, type);
+        }
+        finally {
+            return fraction;
+        }
+    }
+
+ private static int enterFractionData(String part, String fractionInfo) {
+        Scanner keyboard = new Scanner(System.in);
+        int input;
+        try {
+            System.out.print("Enter " + part + " of " + fractionInfo + ": ");
+            input = Integer.parseInt(keyboard.nextLine());
+            if (part.equalsIgnoreCase("denominator") && input == 0) {
+                input = enterFractionData(part, fractionInfo);
+            }
+            return input;
+        } catch (Exception exc) {
+            if (part.equalsIgnoreCase("numerator")) {
+                throw new NoNumeratorException();
+            } else if (part.equalsIgnoreCase("denominator")) {
+                throw new NoDenominatorException();
+            } else {
+                throw new NoWholeNumberException();
+            }
+        }
+    }
+
+    private static void printRegAndRegResults(String operation){
+        switch (operation){
+            case "add":
+                System.out.print("Sum (fraction): " + operand1.add(operand2).toString() +"\nSum (decimal): ");
+                System.out.printf("%.2f", (operand1.add(operand2)).toDouble());
+                break;
+            case "subtract":
+                System.out.print("Difference (fraction): " + operand1.subtract(operand2).toString() +"\nDifference (decimal):");
+                System.out.printf("%.2f", + (operand1.subtract(operand2)).toDouble());
+                break;
+            case "multiply":
+                System.out.print("Product (fraction): " + operand1.multiplyBy(operand2).toString() +"\nProduct (decimal):");
+                System.out.printf("%.2f", (operand1.multiplyBy(operand2)).toDouble());
+                break;
+            case "divide":
+                System.out.print("Quotient (fraction): " + operand1.divideBy(operand2).toString() +"\nQuotient (decimal):");
+                System.out.printf("%.2f", (operand1.divideBy(operand2)).toDouble());
+                break;
+        }
+    }
+
+    private static void printMixandMixResults(String operation){
+        MixedFraction operand1Mix = (MixedFraction) operand1;
+        MixedFraction operand2Mix = (MixedFraction) operand2;
+        switch (operation){
+            case "add":
+                System.out.print("Sum (fraction):" + operand1Mix.add(operand2Mix).toString() +"\nSum (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.add(operand2Mix)).toDouble());
+                break;
+            case "subtract":
+                System.out.print("Difference (fraction): " + operand1Mix.subtract(operand2Mix).toString() +"\nDifference (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.subtract(operand2Mix)).toDouble());
+                break;
+            case "multiply":
+                System.out.print("Product (fraction): " + operand1Mix.multiplyBy(operand2Mix).toString() +"\nProduct (decimal): ");
+                System.out.printf("%.2f",(operand1Mix.multiplyBy(operand2Mix)).toDouble());
+                break;
+            case "divide":
+                System.out.print("Quotient (fraction): " + operand1Mix.divideBy(operand2Mix).toString() +"\nQuotient (decimal): ");
+                System.out.printf("%.2f", (operand1Mix.divideBy(operand2Mix)).toDouble());
+                break;
+        }
+    }
+
 
