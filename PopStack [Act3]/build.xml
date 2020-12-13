@@ -1,3 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Module 3" basedir="." default="compile">
+  <!-- Global properties for this build file -->
+	<property name = "classes" location = "classes"/>
+	<property name = "jar" location = "jar"/>
+	<property name = "doc" location = "doc"/>
+	
+	<!-- Creates directories for classes and jar files-->
+	<target name="init" depends="clean">
+		<mkdir dir="${classes}"/>
+		<mkdir dir="${jar}"/>
+	</target>
+
+	<!-- Deletes everything in the folder except the src folder and the build file -->
+	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir=".">
+				<include name="*/"/>
+				<exclude name="src/"/>
+				<exclude name="build.xml"/>
+				<exclude name="PopStack.pdf"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- Asks for the src directory the converts java files to classes -->
+	<target name="compile" depends="init">
+		<input message="Please enter the directory of the Java file" addproperty="src"/>
+		<javac includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+		<!-- Which is stored in ${classes} -->
+	</target>
+	
+	<!-- Generates documentation for the given src path-->
+	<target name="doc" depends="compile">
+	<!-- Automatically generates a new directory after javadoc execution -->
+		<javadoc sourcepath="${src}" destdir="${doc}">
+			<fileset dir="."/>
+		</javadoc>
+	</target>
+	
+	<!-- jar must run compile and doc first before it can archive it -->
+	<target name="jar" depends="compile, doc">
+		<jar destfile="${jar}\MyApp.jar" basedir="${classes}"/>
+		<jar destfile="${jar}\Docs.jar" basedir="${doc}"/>
+	</target>
 </project>
