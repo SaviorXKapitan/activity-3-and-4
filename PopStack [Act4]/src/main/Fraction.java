@@ -146,5 +146,59 @@ public class Fraction {
         prod.reduce();
         return prod;
     }
+    /**
+     * Returns the quotient of this fraction and another fraction.
+     * @param other the other fraction to divide by (divisor).
+     * @return the quotient of this fraction and the other fraction.
+     */
+    public Fraction divideBy(Fraction other) {
+        Fraction quo = new Fraction();
+        int den = denominator * other.getNumerator();
+        int num = numerator * other.getDenominator();
+        quo.setNumerator(num);
+        quo.setDenominator(den);
+        quo.reduce();
+        return quo;
+    }
+
+    /**
+     * Returns the sum of this fraction and a mixed fraction.
+     * @param other the mixed fraction to add with (addend).
+     * @return the sum of this fraction and the mixed fraction.
+     */
+    public MixedFraction add(MixedFraction other) {
+        Fraction operand1 = new Fraction(getNumerator(), getDenominator());
+        Fraction sum = operand1.add(other.toFraction());
+        sum.reduce();
+        MixedFraction sumMixed = new MixedFraction(sum);
+        return sumMixed;
+    }
+
+    /**
+     * Returns the difference of this fraction and a mixed fraction.
+     * @param other the mixed fraction to subtract by (minuend).
+     * @return the difference of this fraction and the mixed fraction.
+     */
+    public MixedFraction subtract(MixedFraction other) {
+        Fraction operand1 = new Fraction(getNumerator(), getDenominator());
+        Fraction diff = operand1.subtract(other.toFraction());
+        diff.reduce();
+        MixedFraction diffMixed = new MixedFraction(diff);
+        return diffMixed;
+    }
+
+    /**
+     * Returns the product of this fraction and a mixed fraction.
+     * @param other the mixed fraction to multiply with (multiplier).
+     * @return the product of this fraction and the mixed fraction.
+     */
+    public MixedFraction multiplyBy(MixedFraction other) {
+        Fraction operand1 = new Fraction(getNumerator(), getDenominator());
+        Fraction prod = operand1.multiplyBy(other.toFraction());
+        prod.reduce();
+        MixedFraction prodMixed = new MixedFraction(prod);
+        return prodMixed;
+    }
+
 
 
