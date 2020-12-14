@@ -17,7 +17,7 @@ public class FractionTester {
     public static void enterFraction1(){
         String operand = "fraction 1";
         String fraction1Type = decideMixedOrRegular(operand);
-        operand1= enterFraction(operand, fraction1Type);
+        operand1= enterFraction(operand, fraction1Type);;
     }
 
     public static void enterFraction2(){
@@ -108,7 +108,7 @@ public class FractionTester {
         boolean loop;
         do {
             try {
-                int input;
+                string input;
                 loop = false;
                 Scanner keyboard = new Scanner(System.in);
                 System.out.print("Enter 1 or 2: ");
@@ -304,7 +304,7 @@ public class FractionTester {
             case 1:
                 operand1.reduce();
                 System.out.print("Reduced Fraction 1: " + operand1);
-                break;
+                break;;
             case 2:
                 operand2.reduce();
                 System.out.print("Reduced Fraction 2: " + operand2);
